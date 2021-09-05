@@ -1,4 +1,4 @@
-def caesar_hard(message,key):
+def caesar_hard(message,key,desh=False):
     message = message.lower() #Перевод сообщения и ключа в нижний регистр
     mes_fin=''
     key = key.lower()
@@ -9,7 +9,10 @@ def caesar_hard(message,key):
     for i in range(len(message)):                       #По сообщению
         if message[i] in alphabet:                      #Если буква включена в алфавит
             keynow=alphabet.index(key[i%len(key)])      #номер буквы ключа в алфавите
-            mes_fin+=alphabet[(alphabet.index(message[i])+keynow)%33]   #в новое сообщение пишем букву от суммы
+            if(desh):
+                mes_fin+=alphabet[(alphabet.index(message[i]) - keynow+33) % 33]  #разность - дешифратор.
+            else:
+                mes_fin+=alphabet[(alphabet.index(message[i])+keynow)%33]   #в новое сообщение пишем букву от суммы
         else:
             mes_fin+=message[i]
     #print("алфавит")
