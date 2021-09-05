@@ -1,5 +1,5 @@
-import copy
-def caesar_simple(message,shift,key):
+
+def caesar_simple(message,shift,key, desh=False):
     message = message.lower()   #Переводим обе строчные переменные в нижний регистр
     key = key.lower()           #Во избежании конфликтов
     keyset=set(key)             #Делаем из списка множество
@@ -17,9 +17,10 @@ def caesar_simple(message,shift,key):
     #print(alphabet)
     mes_new=''
     for ch in message:          #Поиск и замена букв в сообщении
-        if ch in alphabet:
-            mes_new+=alphabet_new[alphabet.index(ch)]
+        if ch in alphabet:      #В зависимости от того, нам нужен шифратор, или дешифратор
+            mes_new+=alphabet[alphabet_new.index(ch)]if desh else alphabet_new[alphabet.index(ch)]
         else:
             mes_new+=ch         #...Кроме тех, которые есть в алфавите
+
 
     return mes_new
